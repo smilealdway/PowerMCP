@@ -2,9 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
-[![Documentation Status](https://readthedocs.org/projects/powermcp/badge/?version=latest)](https://powermcp.readthedocs.io/en/latest/?badge=latest)
 
-PowerMCP is an open-source framework for orchestrating AI agents across power system software like PowerWorld and pandapower using the Model Context Protocol (MCP). It enables intelligent coordination, simulation, and control in the energy domain.
+PowerMCP is an open-source collection of MCP (Model Context Protocol) tools and servers for power system software like PowerWorld and pandapower. These tools enable LLMs to directly interact with power system applications, facilitating intelligent coordination, simulation, and control in the energy domain.
 
 ## 🌟 What is MCP?
 
@@ -24,21 +23,27 @@ We're building an open-source community focused on accelerating AI adoption in t
 - **Education**: Provide resources and examples for implementing AI in power systems
 - **Standardization**: Develop best practices for AI integration in the energy sector
 
-## 🚀 Getting Started with Python
+## 🚀 Getting Started with MCP
 
-### Installation
+### Basic MCP Concepts
 
-```bash
-pip install powermcp
-```
+MCP defines three core primitives that servers can implement:
 
-### Basic Usage
+| Primitive | Control                | Description                                       | Example Use                  |
+| --------- | ---------------------- | ------------------------------------------------- | ---------------------------- |
+| Prompts   | User-controlled        | Interactive templates invoked by user choice      | Slash commands, menu options |
+| Resources | Application-controlled | Contextual data managed by the client application | Power system data, API responses |
+| Tools     | Model-controlled       | Functions exposed to the LLM to take actions      | Power flow analysis, control actions |
+
+### Example MCP Server
+
+Here's a simple example of a power system MCP server:
 
 ```python
-from powermcp import PowerMCP
+from mcp.server.fastmcp import FastMCP
 
-# Initialize the MCP server
-mcp = PowerMCP("PowerSystem")
+# Create an MCP server
+mcp = FastMCP("PowerSystem")
 
 # Add a power flow analysis tool
 @mcp.tool()
@@ -54,27 +59,38 @@ def get_system_data(component_id: str) -> dict:
     return {"voltage": 1.0, "power": 100.0}
 ```
 
-### Example: Power System Monitoring
+### Using with LLMs
 
-```python
-from powermcp import PowerMCP
-import pandas as pd
+To use these MCP tools with an LLM:
 
-mcp = PowerMCP("PowerMonitor")
+1. Install the MCP Python SDK:
+```bash
+pip install mcp-server-git
+```
 
-@mcp.tool()
-def analyze_power_quality(data: pd.DataFrame) -> dict:
-    """Analyze power quality metrics"""
-    return {
-        "voltage_deviation": calculate_deviation(data),
-        "frequency_stability": check_frequency(data),
-        "power_factor": compute_power_factor(data)
+2. Run your MCP server:
+```bash
+python your_server.py
+```
+
+3. Configure your LLM application (e.g., Claude Desktop) to use the MCP server:
+```json
+{
+  "mcpServers": {
+    "power": {
+      "command": "python",
+      "args": ["your_server.py"]
     }
+  }
+}
 ```
 
 ## 📚 Documentation
 
-For detailed documentation, please visit our [documentation site](https://powermcp.readthedocs.io/).
+For detailed documentation about MCP, please visit:
+- [Model Context Protocol documentation](https://modelcontextprotocol.io/docs)
+- [Model Context Protocol specification](https://modelcontextprotocol.io/specification)
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
 ## 🤝 Contributing
 
