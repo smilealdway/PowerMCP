@@ -1,0 +1,21 @@
+{
+    "mcpServers": {
+
+      "powerworld": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "D:\\anaconda3\\envs\\MCP_test\\python.exe",
+          "C:\\Users\\ibm\\Desktop\\PowerAgent\\ESA-master\\mcp\\powerworld.py"
+        ]
+      },
+      "pandapower": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "D:\\anaconda3\\envs\\MCP_test\\python.exe",
+          "C:\\Users\\ibm\\Desktop\\PowerAgent\\mcp\\panda_mcp.py"
+        ]
+      }
+    }
+  } 
