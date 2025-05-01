@@ -1,0 +1,37 @@
+{
+    "mcpServers": {
+
+      "powerworld": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "D:\\anaconda3\\envs\\MCP_test\\python.exe",
+          "C:\\Users\\ibm\\Desktop\\PowerAgent\\ESA-master\\mcp\\powerworld.py"
+        ]
+      },
+      "pandapower": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "D:\\anaconda3\\envs\\MCP_test\\python.exe",
+          "C:\\Users\\ibm\\Desktop\\PowerAgent\\mcp\\panda_mcp.py"
+        ]
+      },
+      "pydss": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "D:\\anaconda3\\envs\\MCP_test\\python.exe",
+          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\PyDSS\\pydss_mcp.py"
+        ]
+      },
+      "psse": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "D:\\anaconda3\\envs\\MCP_test\\python.exe",
+          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\PSSE\\psse_mcp.py"
+        ]
+      } 
+    }
+  } 
