@@ -1,5 +1,6 @@
 {
     "mcpServers": {
+<<<<<<< HEAD
 
       "powerworld": {
         "command": "cmd",
@@ -35,3 +36,37 @@
       } 
     }
   } 
+=======
+      "powerworld": {
+        "command": "/Users/qianzhang/anaconda3/envs/MCP_test/bin/python",
+        "args": [
+          "/Users/qianzhang/Documents/GitHub/PowerMCP/PowerWorld/powerworld.py"
+        ]
+      },
+      "pandapower": {
+        "command": "/Users/qianzhang/anaconda3/envs/MCP_test/bin/python",
+        "args": [
+          "/Users/qianzhang/Documents/GitHub/PowerMCP/pandapower/panda_mcp.py"
+        ]
+      },
+      "andes": {
+        "command": "/Users/qianzhang/anaconda3/envs/MCP_test/bin/python",
+        "args": [
+          "/Users/qianzhang/Documents/GitHub/PowerMCP/ANDES/andes_mcp.py"
+        ]
+      },
+      "egret": {
+        "command": "/Users/qianzhang/anaconda3/envs/MCP_test/bin/python",
+        "args": [
+          "/Users/qianzhang/Documents/GitHub/PowerMCP/Egret/egret_mcp.py"
+        ]
+      },
+      "pypsa": {
+        "command": "/Users/qianzhang/anaconda3/envs/MCP_test/bin/python",
+        "args": [
+          "/Users/qianzhang/Documents/GitHub/PowerMCP/PyPSA/pypsa_mcp.py"
+        ]
+      }
+    }
+} 
+>>>>>>> c414c9136a456f98aff1b3b7cff11a2a4781981f
