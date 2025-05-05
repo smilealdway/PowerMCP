@@ -1,4 +1,4 @@
-# Pandapower Python Integration
+# Pandapower MCP Python Integration
 
 ## Requirements
 

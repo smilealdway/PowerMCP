@@ -10,10 +10,16 @@ Before using the MCP servers, you need to replace the Python executable path and
 - Python path example: `/path/to/your/python`
 - MCP server file path example: `/path/to/your/mcp/server.py`
 
-### Available MCP Servers
+### MCP Servers Have Been Tested
+- Egret
+- OpenDSS
+- pandapower
 - PowerWorld
-- PandaPower
-- PyDSS
+- PyPSA
+
+### MCP Servers Under Development
+- ANDES
 - PSSE
+- ...
 
 Each server requires its own Python environment and configuration file path to be specified in `mcp.json`. 

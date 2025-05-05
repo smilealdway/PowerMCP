@@ -1,4 +1,4 @@
-# Egret Power System Analysis Server
+# Egret MCP Python Integration
 
 ## Requirements
 

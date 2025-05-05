@@ -1,4 +1,4 @@
-# PowerWorld Python Integration
+# PowerWorld MCP Python Integration
 
 ## Requirements
 
@@ -21,7 +21,7 @@
 - **determine_shortest_path(start: str, end: str, branch_distance_measure: str = "X", branch_filter: str = "ALL")**: Find the shortest path between two buses.
 - **run_robustness_analysis()**: Perform robustness analysis on the power system.
 - **get_ptdf_matrix_fast()**: Get the Power Transfer Distribution Factors (PTDF) matrix using fast calculation method.
-- - **Users can add more features based on PowerWorld python API**
+- **Users can add more features based on PowerWorld python API**
 
 ## Prompt Example
 

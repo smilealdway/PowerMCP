@@ -1,4 +1,4 @@
-# PyPSA-MCP Power System Analysis Server
+# PyPSA MCP Power System Analysis Server
 
 ## Requirements
 
