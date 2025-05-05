@@ -1,8 +1,3 @@
-// IMPORTANT: Replace the Python executable path and MCP server file paths with your local paths
-// Example paths shown are for Windows. For macOS/Linux, use appropriate paths and commands
-// Python path example: "/path/to/your/python"
-// MCP server file path example: "/path/to/your/mcp/server.py"
-
 {
     "mcpServers": {
       "powerworld": {
@@ -10,7 +5,7 @@
         "args": [
           "/c",
           "D:\\anaconda3\\envs\\MCP_test\\python.exe",
-          "C:\\Users\\ibm\\Desktop\\PowerAgent\\ESA-master\\mcp\\powerworld.py"
+          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\PowerWorld\\powerworld_mcp.py"
         ]
       },
       "pandapower": {
@@ -18,15 +13,31 @@
         "args": [
           "/c",
           "D:\\anaconda3\\envs\\MCP_test\\python.exe",
-          "C:\\Users\\ibm\\Desktop\\PowerAgent\\mcp\\panda_mcp.py"
+          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\pandapower\\panda_mcp.py"
         ]
       },
-      "pydss": {
+      "opendss": {
         "command": "cmd",
         "args": [
           "/c",
           "D:\\anaconda3\\envs\\MCP_test\\python.exe",
-          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\PyDSS\\pydss_mcp.py"
+          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\OpenDSS\\opendss_mcp.py"
+        ]
+      },
+      "egret": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "D:\\anaconda3\\envs\\MCP_test\\python.exe",
+          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\Egret\\egret_mcp.py"
+        ]
+      },
+      "pypsa": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "D:\\anaconda3\\envs\\MCP_test\\python.exe",
+          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\PyPSA\\pypsa_mcp.py"
         ]
       },
       "psse": {
@@ -34,8 +45,16 @@
         "args": [
           "/c",
           "D:\\anaconda3\\envs\\MCP_test\\python.exe",
-          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\PSSE\\psse_mcp.py"
+          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\PSS\\psse_mcp.py"
         ]
-      } 
+      },
+      "andes": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "D:\\anaconda3\\envs\\MCP_test\\python.exe",
+          "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\ANDES\\andes_mcp.py"
+        ]
+      }
     }
   } 

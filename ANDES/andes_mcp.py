@@ -11,7 +11,7 @@ from mcp.server.fastmcp import FastMCP
 from typing import Dict, Any
 
 # Set up storage directory
-STORE_DIR = "/Users/qianzhang/Documents/GitHub/PowerMCP/ANDES/store"
+STORE_DIR = "C:\\Users\\ibm\\Documents\\GitHub\\PowerMCP\\ANDES"
 os.makedirs(STORE_DIR, exist_ok=True)
 
 # Configure logging

@@ -5,9 +5,7 @@ from egret.models.unit_commitment import solve_unit_commitment
 from egret.models.acopf import solve_acopf, create_psv_acopf_model
 from egret.models.dcopf import solve_dcopf, create_ptdf_dcopf_model
 from typing import Dict, Any, Optional
-import json
 import io
-import sys
 import logging
 from contextlib import redirect_stdout, redirect_stderr
 

@@ -1,6 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-import pypsa
-from pypsa.networks import Network
+from pypsa import Network
 import numpy as np
 from typing import Dict, List, Optional, Union
 import json
@@ -25,14 +24,15 @@ def get_network_info(network_name: str) -> str:
 @mcp.tool()
 def optimize_network(
     network_name: str,
-    solver_name: str = "glpk",
+    solver_name: str = "gurobi",
     formulation: str = "kirchhoff"
 ) -> str:
     """Run a linear optimal power flow (LOPF) on the network"""
     
     network = Network(network_name)
     try:
-        network.lopf(
+        # Use the correct LOPF method for the current PyPSA version
+        network.optimize(
             solver_name=solver_name,
             formulation=formulation
         )
