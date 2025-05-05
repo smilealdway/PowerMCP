@@ -5,9 +5,6 @@
 - Python 3.10 or higher
 - [py_dss_interface](https://github.com/PauloRadatz/py_dss_interface)
 
-## Prompt Example
-
-- Could you solve the bus voltage of `IEEE13Nodeckt.dss` in OpenDSS?
 
 ## Available Tools
 
@@ -17,7 +14,12 @@
 - **get_bus_voltages()**: Get per-unit voltages for all nodes in the circuit.
 - **run_daily_energy_meter(meter_name: str = 'Feeder', hours: int = 24)**: Run a daily simulation and return total energy (kWh) from the specified energy meter for each hour.
 - **get_harmonic_results(load_name: str, harmonic: int)**: Get the magnitude and angle of current and voltage for a specific load and harmonic order.
-- Users can add more features based on py_dss_interface api.
+- **Users can add more features based on py_dss_interface API**
+
+
+## Prompt Example
+
+- Could you solve the bus voltage of `IEEE13Nodeckt.dss` in OpenDSS?
 
 
 ## Resources

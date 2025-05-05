@@ -8,10 +8,6 @@
 - PSSE v33 (or compatible version)
 - Access to the PSSE installation directory (e.g., `C:\Program Files (x86)\PTI\PSSE33`)
 
-## Prompt Example
-
-- Could you solve the power flow for `savnw.sav` in PSSE?
-
 ## Available Tools
 
 - **load_and_solve_case(case_path: str)**: Load and solve a power flow case.
@@ -35,8 +31,11 @@
     - `sheet_name`: Name of the sheet in Excel
   - Returns: Dictionary containing export status.
 
-- Users can add more features based on PSSE python api.
+- **Users can add more features based on PSSE python API**
 
+## Prompt Example
+
+- Could you solve the power flow for `savnw.sav` in PSSE?
 
 ## Resources
 - [PSSE Documentation](https://www.siemens.com/us/en/products/energy/grid-software/planning/pss-software.html)

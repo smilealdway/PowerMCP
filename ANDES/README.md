@@ -31,7 +31,7 @@
 - **get_system_info()**: Get information about the currently loaded power system.
   - Returns: Dictionary containing system information.
 
--- Users can add more features based on ANDES api.
+- **Users can add more features based on ANDES API**
 
 
 ## Development Notes

@@ -6,13 +6,13 @@
 - Python 3.10 or higher
 - At least one LP solver supported by PyPSA (e.g., HiGHS, CBC, GLPK, or Gurobi)
 
-## Main Features
+## Available Tools
 
 - **Get Network Info**: Retrieve basic information about a PyPSA network (buses, generators, loads, lines, components).
 - **Run Linear Optimal Power Flow (LOPF)**: Solve a linear OPF for a given PyPSA network file, with configurable solver and formulation.
-- Users can add more features based on PyPSA api.
+- **Users can add more features based on PyPSA API**
 
-## Example
+## Prompt Example
 
 - Get network info:
   - "Get the network info of `test_case.nc` in PyPSA."

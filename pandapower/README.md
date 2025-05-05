@@ -5,14 +5,14 @@
 - [pandapower](https://github.com/e2nIEE/pandapower)
 - Python 3.10 or higher
 
-## Main Features
+## Available Tools
 
 - **Create an empty network**: Initialize a new, empty Pandapower network.
 - **Load a network**: Load a network from a `.json` or `.p` file.
 - **Run power flow**: Perform power flow analysis (Newton-Raphson or Backward/Forward Sweep).
 - **Contingency analysis**: Run N-1 or N-2 contingency analysis on lines and transformers.
 - **Get network info**: Retrieve statistics and data for buses, lines, transformers, generators, loads, and switches.
-- Users can add more features based on pandapower api.
+- **Users can add more features based on pandapower API**
 
 
 ## Prompt Example

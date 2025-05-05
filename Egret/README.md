@@ -6,13 +6,13 @@
 - Python 3.10 or higher
 - Gurobi or ipopt Solver for different tasks
 
-## Main Features
+## Available Tools
 
 - **Solve Unit Commitment**: Solve a unit commitment problem using Egret with support for custom solvers, MIP gap, and time limits.
 - **Solve AC Optimal Power Flow (AC OPF)**: Run AC OPF on Matpower or Egret JSON case files, returning detailed results.
 - **Solve DC Optimal Power Flow (DC OPF)**: Run DC OPF on Matpower or Egret JSON case files, returning detailed results.
 - **Quiet Logging**: All solver and library output is suppressed for cleaner logs.
-- Users can add more features based on Egret api.
+- **Users can add more features based on Egret API**
 
 
 ## Prompt Example
