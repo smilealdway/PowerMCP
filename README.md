@@ -48,6 +48,7 @@ Check out these helpful tutorials to get started with MCP:
 - [**Building Your First MCP Server**](https://modelcontextprotocol.io/build/server): Step-by-step guide to creating a basic MCP server.
 - [**Anthropic MCP Tutorial**](https://docs.anthropic.com/claude/docs/model-context-protocol): Learn how to use MCP with Claude models.
 - [**Cursor MCP Tutorial**](https://docs.cursor.com/context/model-context-protocol): Learn how to use MCP with Cursor.
+- [**Other Protocol**](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf): Open AI Function Calling Tool
 
 ### Using with LLMs
 
