@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from common.utils import PowerError, power_mcp_tool
 import mcp
 from mcp.server.fastmcp import FastMCP
 from egret.data.model_data import ModelData
@@ -17,7 +21,7 @@ logging.getLogger('pyomo').setLevel(logging.WARNING)
 # Create an MCP server
 mcp = FastMCP("Egret Power System Analysis Server")
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def solve_unit_commitment_problem(
     case_file: str,
     solver: str = "gurobi",
@@ -66,12 +70,12 @@ def solve_unit_commitment_problem(
         return results
     
     except Exception as e:
-        return {
-            "status": "error",
-            "message": str(e)
-        }
+        return PowerError(
+            status="error",
+            message=str(e)
+        )
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def solve_ac_opf(
     case_file: str,
     solver: str = "ipopt",
@@ -119,12 +123,12 @@ def solve_ac_opf(
         return solution
     
     except Exception as e:
-        return {
-            "status": "error",
-            "message": str(e)
-        }
+        return PowerError(
+            status="error",
+            message=str(e)
+        )
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def solve_dc_opf(
     case_file: str,
     solver: str = "gurobi",
@@ -174,10 +178,10 @@ def solve_dc_opf(
         return solution
     
     except Exception as e:
-        return {
-            "status": "error",
-            "message": str(e)
-        }
+        return PowerError(
+            status="error",
+            message=str(e)
+        )
 
 if __name__ == "__main__":
     mcp.run(transport="stdio") 

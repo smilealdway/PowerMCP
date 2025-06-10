@@ -3,6 +3,12 @@ import pandapower as pp
 from mcp.server.fastmcp import FastMCP
 import logging
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from common.utils import PowerError, power_mcp_tool
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -21,11 +27,13 @@ def _get_network() -> pp.pandapowerNet:
         pp.pandapowerNet: The current network or raises error if none loaded
     """
     global _current_net
+    
     if _current_net is None:
         raise RuntimeError("No pandapower network is currently loaded. Please create or load a network first.")
     return _current_net
 
-@mcp.tool()
+
+@power_mcp_tool(mcp)
 def create_empty_network() -> Dict[str, Any]:
     """Create an empty pandapower network.
     
@@ -36,6 +44,7 @@ def create_empty_network() -> Dict[str, Any]:
     global _current_net
     try:
         _current_net = pp.create_empty_network()
+        raise Exception("test")
         return {
             "status": "success",
             "message": "Empty network created successfully",
@@ -46,12 +55,12 @@ def create_empty_network() -> Dict[str, Any]:
             }
         }
     except Exception as e:
-        return {
-            "status": "error",
-            "message": f"Failed to create empty network: {str(e)}"
-        }
+        return PowerError(
+            status="error",
+            message=f"Failed to create empty network: {str(e)}"
+        )
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def load_network(file_path: str) -> Dict[str, Any]:
     """Load a pandapower network from a file.
     
@@ -81,22 +90,22 @@ def load_network(file_path: str) -> Dict[str, Any]:
             }
         }
     except FileNotFoundError:
-        return {
-            "status": "error",
-            "message": f"File not found: {file_path}"
-        }
+        return PowerError(
+            status="error",
+            message=f"File not found: {file_path}"
+        )
     except ValueError as ve:
-        return {
-            "status": "error",
-            "message": str(ve)
-        }
+        return PowerError(
+            status="error",
+            message=str(ve)
+        )
     except Exception as e:
-        return {
-            "status": "error",
-            "message": f"Failed to load network: {str(e)}"
-        }
+        return PowerError(
+            status="error",
+            message=f"Failed to load network: {str(e)}"
+        )
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def run_power_flow(algorithm: str = 'nr', calculate_voltage_angles: bool = True, 
                   max_iteration: int = 10, tolerance_mva: float = 1e-8) -> Dict[str, Any]:
     """Run power flow analysis on the current network.
@@ -130,17 +139,17 @@ def run_power_flow(algorithm: str = 'nr', calculate_voltage_angles: bool = True,
             "results": results
         }
     except RuntimeError as re:
-        return {
-            "status": "error",
-            "message": str(re)
-        }
+        return PowerError(
+            status="error",
+            message=str(re)
+        )
     except Exception as e:
-        return {
-            "status": "error",
-            "message": f"Power flow calculation failed: {str(e)}"
-        }
+        return PowerError(
+            status="error",
+            message=f"Power flow calculation failed: {str(e)}"
+        )
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def run_contingency_analysis(contingency_type: str = "N-1", 
                            elements: Optional[List[str]] = None) -> Dict[str, Any]:
     """Run contingency analysis on the current network.
@@ -204,17 +213,17 @@ def run_contingency_analysis(contingency_type: str = "N-1",
             "results": results
         }
     except RuntimeError as re:
-        return {
-            "status": "error",
-            "message": str(re)
-        }
+        return PowerError(
+            status="error",
+            message=str(re)
+        )
     except Exception as e:
-        return {
-            "status": "error",
-            "message": f"Contingency analysis failed: {str(e)}"
-        }
+        return PowerError(
+            status="error",
+            message=f"Contingency analysis failed: {str(e)}"
+        )
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def get_network_info() -> Dict[str, Any]:
     """Get information about the current network.
     
@@ -242,15 +251,15 @@ def get_network_info() -> Dict[str, Any]:
             "info": info
         }
     except RuntimeError as re:
-        return {
-            "status": "error",
-            "message": str(re)
-        }
+        return PowerError(
+            status="error",
+            message=str(re)
+        )
     except Exception as e:
-        return {
-            "status": "error",
-            "message": f"Failed to get network information: {str(e)}"
-        }
+        return PowerError(
+            status="error",
+            message=f"Failed to get network information: {str(e)}"
+        )
 
 if __name__ == "__main__":
     mcp.run(transport="stdio") 

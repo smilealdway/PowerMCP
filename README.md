@@ -76,6 +76,18 @@ python your_server.py
 }
 ```
 
+For instance, for `pandapower` you could configure the server as follows:
+```json
+{
+  "mcpServers": {
+    "pandapower": {
+      "command": "python",
+      "args": ["pandapower/panda_mcp.py"]
+    }
+  }
+}
+```
+
 ## 📚 Documentation
 
 For detailed documentation about MCP, please visit:
