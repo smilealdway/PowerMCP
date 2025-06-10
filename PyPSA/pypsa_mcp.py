@@ -1,14 +1,18 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from mcp.server.fastmcp import FastMCP
 from pypsa import Network
 import numpy as np
 from typing import Dict, List, Optional, Union
 import json
+from common.utils import PowerError, power_mcp_tool
 
 # Create an MCP server
 mcp = FastMCP("PyPSA-MCP")
 
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def get_network_info(network_name: str) -> str:
     """Get basic information about the network"""
     network = Network(network_name)
@@ -21,7 +25,7 @@ def get_network_info(network_name: str) -> str:
     }
     return json.dumps(info, indent=2)
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def optimize_network(
     network_name: str,
     solver_name: str = "gurobi",
@@ -54,7 +58,10 @@ def optimize_network(
         }
         return json.dumps(results, indent=2)
     except Exception as e:
-        return f"Optimization failed: {str(e)}"
+        return PowerError(
+            status="error",
+            message=f"Optimization failed: {str(e)}"
+        )
 
 if __name__ == "__main__":
     mcp.run(transport="stdio") 

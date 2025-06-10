@@ -1,9 +1,12 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from common.utils import PowerError, power_mcp_tool
 from dataclasses import dataclass
 from typing import Optional, Dict, Any
 from mcp.server.fastmcp import FastMCP
 import subprocess
 import json
-import os
 from pathlib import Path
 
 # Create an MCP server for PSSE
@@ -32,11 +35,10 @@ def run_psse_command(args: list) -> Dict[str, Any]:
     try:
         # Ensure the operations script exists
         if not os.path.exists(config.psse_script):
-            return {
-                "status": -1,
-                "message": f"PSSE operations script not found at: {config.psse_script}",
-                "success": False
-            }
+            return PowerError(
+                status="error",
+                message=f"PSSE operations script not found at: {config.psse_script}"
+            )
             
         cmd = [config.python27_path, config.psse_script] + args
         result = subprocess.run(
@@ -50,29 +52,26 @@ def run_psse_command(args: list) -> Dict[str, Any]:
         )
         
         if result.returncode != 0:
-            return {
-                "status": -1,
-                "message": f"Command failed: {result.stderr}",
-                "success": False
-            }
+            return PowerError(
+                status="error",
+                message=f"Command failed: {result.stderr}"
+            )
         
         try:
             return json.loads(result.stdout)
         except json.JSONDecodeError:
-            return {
-                "status": -1,
-                "message": f"Failed to parse PSSE output: {result.stdout}",
-                "success": False
-            }
+            return PowerError(
+                status="error",
+                message=f"Failed to parse PSSE output: {result.stdout}"
+            )
             
     except Exception as e:
-        return {
-            "status": -1,
-            "message": f"Error running command: {str(e)}",
-            "success": False
-        }
+        return PowerError(
+            status="error",
+            message=f"Error running command: {str(e)}"
+        )
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def load_and_solve_case(case_path: str) -> Dict[str, Any]:
     """
     Load and solve a power flow case
@@ -88,7 +87,7 @@ def load_and_solve_case(case_path: str) -> Dict[str, Any]:
     args = ["solve", "--sav-case", case_path]
     return run_psse_command(args)
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def run_dynamic_simulation(
     sav_case: str,
     dyr_case: str,
@@ -131,7 +130,7 @@ def run_dynamic_simulation(
     
     return run_psse_command(args)
 
-@mcp.tool()
+@power_mcp_tool(mcp)
 def export_results_to_excel(
     channel_file: str,
     excel_file: str = "out.xls",
