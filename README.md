@@ -106,7 +106,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 ### Core Team
-- [Qian Zhang](https://seas.harvard.edu/person/qian-zhang) 
+- [Qian Zhang](https://seas.harvard.edu/person/qian-zhang), [Maanas Goel](https://www.linkedin.com/in/maanas-goel/)
 
 ### Special Thanks
 - All contributors who help make this project better
