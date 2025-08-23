@@ -25,6 +25,14 @@ We're building an open-source community focused on accelerating AI adoption in t
 
 ## 🚀 Getting Started with MCP
 
+### 📖 Quick Tutorial
+
+> **🚀 New to PowerMCP? Start here!**
+
+📋 **[PowerMCP Tutorial PDF](https://github.com/Power-Agent/PowerMCP/blob/main/PowerMCP_Tutorial.pdf)** - Your complete guide to getting started with PowerMCP
+
+*This comprehensive tutorial will walk you through everything you need to know to begin using PowerMCP effectively.*
+
 ### Video Demos
 
 Check out these demos showcasing PowerMCP in action:
