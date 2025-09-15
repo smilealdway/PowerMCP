@@ -33,6 +33,58 @@ We're building an open-source community focused on accelerating AI adoption in t
 
 *This comprehensive tutorial will walk you through everything you need to know to begin using PowerMCP effectively.*
 
+#### Easy Fully Offline Quick Start - No API Keys
+
+Using commericial AI models in Claude Desktop or Cursor.ai is great, but if your company security policies dictate, you can run these models fully offline and keep your confidential power flow information private, away from prying eyes.
+
+##### Ollama setup for local AI model
+
+1) Install Ollama from https://ollama.com/download/windows
+
+2) From the model dropdown box, download a tool-capable AI model like GPT-oss or qwen3
+
+You might have trouble downloading the models from online through Ollama. You can copy the models from another machine if you zip your %USERPROFILE%/.ollama/models folder and bring it from a machine that has network access to HuggingFace.
+
+3) Serve the model by enabling the option in Ollama settings or by running
+`
+ollama serve
+`
+##### MCPHost for local MCP protocol handling
+
+1) Install the GO programming language from https://go.dev/dl
+
+2) Clone the MCPHost program from Github using
+`
+go install github.com/mark3labs/mcphost@latest
+`
+3) Setup your config.json file
+Open your config.json file in a text editor. In the JSON list of tools, add the Powerflow programs you have installed on your computer. For example, PSLF
+`
+{
+  "mcpServers": {
+    "pslf": {
+      "command": "python",
+      "args": ["PSLF/pslf_mcp.py"]
+    }
+  }
+}
+`
+Or for PowerWorld.
+`
+{
+  "mcpServers": {
+    "powerworld": {
+      "command": "python",
+      "args": ["PowerWorld/powerworld_mcp.py"]
+    }
+  }
+}
+` 
+4) Start the MCP server, replacing the model name and config file with your preferred option.
+`
+mcphost -m ollama:qwen3:4b --config .\config.json
+`
+
 ### Video Demos
 
 Check out these demos showcasing PowerMCP in action:
