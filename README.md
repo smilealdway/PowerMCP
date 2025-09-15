@@ -54,12 +54,12 @@ ollama serve
 1) Install the GO programming language from https://go.dev/dl
 
 2) Clone the MCPHost program from Github using
-`
+```
 go install github.com/mark3labs/mcphost@latest
-`
+```
 3) Setup your config.json file
 Open your config.json file in a text editor. In the JSON list of tools, add the Powerflow programs you have installed on your computer. For example, PSLF
-`
+```
 {
   "mcpServers": {
     "pslf": {
@@ -68,9 +68,9 @@ Open your config.json file in a text editor. In the JSON list of tools, add the 
     }
   }
 }
-`
+```
 Or for PowerWorld.
-`
+```
 {
   "mcpServers": {
     "powerworld": {
@@ -79,11 +79,11 @@ Or for PowerWorld.
     }
   }
 }
-` 
+```
 4) Start the MCP server, replacing the model name and config file with your preferred option.
-`
+```
 mcphost -m ollama:qwen3:4b --config .\config.json
-`
+```
 
 ### Video Demos
 
