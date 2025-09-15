@@ -35,7 +35,7 @@ def open_case(case: str) -> Dict[str, Any]:
         err, branch_data = psspy.abrncount(flag=4)
         err, gen_data = psspy.amachcount(flag=4)
         
-        if (err = 0) :
+        if (err == 0) :
             return {
                 'status': 'success',
                 'case_info': {
@@ -45,28 +45,28 @@ def open_case(case: str) -> Dict[str, Any]:
                     'num_generators': gen_data if gen_data is not None else 0
                 }
             }
-        else if (err = 1) :
+        elif (err == 1) :
             return {
                 'status': 'error case is blank',
                 'case_info': {
                     'result_code': err
                 }
             }
-        else if (err = 2) :
+        elif (err == 2) :
             return {
                 'status': 'error reading case',
                 'case_info': {
                     'result_code': err
                 }
             }
-        else if (err = 3) :
+        elif (err == 3) :
             return {
                 'status': 'error opening case file',
                 'case_info': {
                     'result_code': err
                 }
             }
-        else if (err = 4) :
+        elif (err == 4) :
             return {
                 'status': 'error prerequisite for API not met',
                 'case_info': {
@@ -104,35 +104,35 @@ def solve_case() -> Dict[str, Any]:
                     'result_code': err
                 }
             }
-        else if (err = 1) :
+        elif (err == 1) :
             return {
                 'status': 'error invalid OPTIONS value',
                 'case_info': {
                     'result_code': err
                 }
             }
-        else if (err = 2) :
+        elif (err == 2) :
             return {
                 'status': 'success with generators converted',
                 'case_info': {
                     'result_code': err
                 }
             }
-        else if (err = 3) :
+        elif (err == 3) :
             return {
                 'status': 'error buses in island(s) without a swing bus',
                 'case_info': {
                     'result_code': err
                 }
             }
-        else if (err = 4) :
+        elif (err == 4) :
             return {
                 'status': 'error bus type code and series element status inconsistencies',
                 'case_info': {
                     'result_code': err
                 }
             }
-        else if (err = 5) :
+        elif (err == 5) :
             return {
                 'status': 'error prerequisitie conditions for API are not met',
                 'case_info': {

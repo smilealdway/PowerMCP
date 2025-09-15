@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "psse": {
+    "pslf": {
       "command": "python",
-      "args": ["PSSE35/psse_mcp.py"]
+      "args": ["PSLF/pslf_mcp.py"]
     }
   }
 }

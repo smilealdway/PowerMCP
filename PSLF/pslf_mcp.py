@@ -32,18 +32,23 @@ def open_case(case: str) -> Dict[str, Any]:
         branch_data = cp.Nbrsec
         gen_data = cp.Ngen
         
-        return {
-            'status': 'success',
-            'case_info': {
-                'path': os.getcwd() + "\\" + case,
-                'num_buses': bus_data if bus_data is not None else 0,
-                'num_branches': branch_data if branch_data is not None else 0,
-                'num_generators': gen_data if gen_data is not None else 0
+        if (iret == 0):
+            return {
+                'status': 'success',
+                'case_info': {
+                    'path': os.getcwd() + "\\" + case,
+                    'num_buses': bus_data if bus_data is not None else 0,
+                    'num_branches': branch_data if branch_data is not None else 0,
+                    'num_generators': gen_data if gen_data is not None else 0
+                }
             }
-        }
+        else:
+            return {
+                'status': 'error unknown'
+            }
     except Exception as e:
         return PowerError(
-            status='error',
+            status='error unknown',
             message=str(e)
         )
 
@@ -57,20 +62,66 @@ def solve_case() -> Dict[str, Any]:
     """
     try:
         
-        result = Pslf.solve_case()
-        
-        return {
-            'status': 'success',
-            'case_info': {
-                'result_code': result
+        iret = Pslf.solve_case()
+        if (iret == 0):
+            return {
+                'status': 'success',
+                'case_info': {
+                    'result_code': iret
+                }
             }
-        }
+        elif (iret == -1):
+            return {
+                'status': 'error case diverged',
+                'case_info': {
+                    'result_code': iret
+                }
+            }
+        elif (iret == -2):
+            return {
+                'status': 'error exceeded maximum iterations',
+                'case_info': {
+                    'result_code': iret
+                }
+            }
+        elif (iret < -2):
+            return {
+                'status': 'error no swing bus or HVDC error',
+                'case_info': {
+                    'result_code': iret
+                }
+            }
+        else:
+            return {
+                'status': 'error unknown',
+                'case_info': {
+                    'result_code': iret
+                }
+            }
     except Exception as e:
         return PowerError(
-            status='error',
+            status='error unknown',
             message=str(e)
         )
 
+@power_mcp_tool(mcp)
+def area_report() -> Dict[str, Any]:
+    """
+    Prints area totals and interchanges to the terminal.
+    """
+    try:
+        
+        Pslf.area_report()
+        
+        return {
+            'status': 'success'
+        }
+    except Exception as e:
+        return PowerError(
+            status='error unknown',
+            message=str(e)
+        )
+    
 
 
 if __name__ == "__main__":
