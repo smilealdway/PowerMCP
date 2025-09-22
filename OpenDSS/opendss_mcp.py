@@ -12,6 +12,9 @@ dss = py_dss_interface.DSS()
 # Create an MCP server
 mcp = FastMCP("PyDSS-MCP")
 
+# Save the original stdout
+original_stdout = sys.stdout
+
 @power_mcp_tool(mcp)
 def compile_and_solve(dss_file: str) -> Dict[str, bool]:
     """
@@ -24,9 +27,11 @@ def compile_and_solve(dss_file: str) -> Dict[str, bool]:
         Dict indicating success status
     """
     try:
+        # Redirect stdout to suppress OpenDSS output
+        sys.stdout = open(os.devnull, 'w')
         dss.text(f"compile [{dss_file}]")
         dss.text("solve")
-        sys.stdout.write("\n")
+        sys.stdout = original_stdout
         return {"success": True}
     except Exception as e:
         return PowerError(
@@ -43,7 +48,9 @@ def get_total_power() -> Dict[str, Union[List[float], str, bool]]:
         Dict containing total power values [P, Q] in kW and kVAr
     """
     try:
+        sys.stdout = open(os.devnull, 'w')
         total_power = dss.circuit.total_power
+        sys.stdout = original_stdout
         return {
             "success": True,
             "power": total_power,
@@ -67,9 +74,11 @@ def set_load_multiplier(load_mult: float) -> Dict[str, Union[float, str]]:
         Dict indicating success status and the minimum per-unit voltage
     """
     try:
+        sys.stdout = open(os.devnull, 'w')  # Suppress OpenDSS output   
         dss.text(f"set loadmult={load_mult}")
         dss.text("solve")
         min_v = min(dss.circuit.buses_vmag_pu)
+        sys.stdout = original_stdout
         return {"success": True, "min_v_pu": min_v}
     except Exception as e:
         return PowerError(
@@ -86,8 +95,10 @@ def get_bus_voltages() -> Dict[str, Union[list, str, bool]]:
         Dict with node names and their per-unit voltages
     """
     try:
+        sys.stdout = open(os.devnull, 'w')  # Suppress OpenDSS output
         nodes = dss.circuit.nodes_names
         voltages = dss.circuit.buses_vmag_pu
+        sys.stdout = original_stdout
         return {"success": True, "nodes": nodes, "voltages_pu": voltages}
     except Exception as e:
         return PowerError(
@@ -108,6 +119,7 @@ def run_daily_energy_meter(meter_name: str = "Feeder", hours: int = 24) -> Dict[
         Dict with hourly energy values
     """
     try:
+        sys.stdout = open(os.devnull, 'w')  # Suppress OpenDSS output
         dss.text("set mode=daily")
         dss.text("set stepsize=1h")
         dss.text("set number=1")
@@ -117,6 +129,7 @@ def run_daily_energy_meter(meter_name: str = "Feeder", hours: int = 24) -> Dict[
             dss.text(f"set hour={hour}")
             dss.text("solve")
             energy.append(dss.meters.register_values[0])
+        sys.stdout = original_stdout
         return {"success": True, "energy_kwh": energy}
     except Exception as e:
         return PowerError(
@@ -137,6 +150,7 @@ def get_harmonic_results(load_name: str, harmonic: int) -> Dict[str, Union[float
         Dict with current and voltage magnitude and angle for the specified harmonic
     """
     try:
+        sys.stdout = open(os.devnull, 'w')  # Suppress OpenDSS output
         dss.circuit.set_active_element(load_name)
         dss.text("set mode=harmonic")
         dss.text(f"set harmonics=[{harmonic}]")
@@ -144,6 +158,7 @@ def get_harmonic_results(load_name: str, harmonic: int) -> Dict[str, Union[float
         dss.circuit.set_active_element(load_name)
         current_mag_ang = dss.cktelement.currents_mag_ang[0]
         voltage_mag_ang = dss.cktelement.voltages_mag_ang[0]
+        sys.stdout = original_stdout
         return {
             "success": True,
             "current_mag_ang": current_mag_ang,
