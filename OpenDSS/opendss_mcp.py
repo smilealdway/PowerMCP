@@ -26,6 +26,7 @@ def compile_and_solve(dss_file: str) -> Dict[str, bool]:
     try:
         dss.text(f"compile [{dss_file}]")
         dss.text("solve")
+        sys.stdout.write("First line\n")
         return {"success": True}
     except Exception as e:
         return PowerError(
