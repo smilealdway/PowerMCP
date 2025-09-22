@@ -33,6 +33,7 @@ def compile_and_solve(dss_file: str) -> Dict[str, bool]:
         dss.text("solve")
         sys.stdout.flush()
         sys.stdout = original_stdout
+        sys.stdout.write("\n")
         return {"success": True}
     except Exception as e:
         return PowerError(
