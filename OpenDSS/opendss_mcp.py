@@ -34,7 +34,7 @@ def compile_and_solve(dss_file: str) -> Dict[str, bool]:
         )
 
 @power_mcp_tool(mcp)
-def get_total_power() -> Dict[str, Union[List[float], str]]:
+def get_total_power() -> Dict[str, Union[List[float], str, bool]]:
     """
     Get the total power from the current circuit
     
