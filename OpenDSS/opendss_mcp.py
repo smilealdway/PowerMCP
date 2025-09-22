@@ -77,7 +77,7 @@ def set_load_multiplier(load_mult: float) -> Dict[str, Union[float, str]]:
         )
 
 @power_mcp_tool(mcp)
-def get_bus_voltages() -> Dict[str, Union[list, str]]:
+def get_bus_voltages() -> Dict[str, Union[list, str, bool]]:
     """
     Get per-unit voltages for all nodes in the circuit
     
